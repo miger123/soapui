@@ -301,9 +301,9 @@ class EnabledWebViewBasedBrowserComponent implements WebViewBasedBrowserComponen
 
         loadUrl(url);
 
-        if (StringUtils.isNotBlank(backupUrl)) {
-            getThreadPool().submit(new BrowserFallbackTask(url, backupUrl));
-        }
+        //if (StringUtils.isNotBlank(backupUrl)) {
+        //    getThreadPool().submit(new BrowserFallbackTask(url, backupUrl));
+        //}
 
         Platform.runLater(new Runnable() {
             public void run() {
