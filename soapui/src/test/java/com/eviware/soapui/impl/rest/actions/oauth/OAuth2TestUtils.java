@@ -52,6 +52,7 @@ public class OAuth2TestUtils {
         profile.setClientID("ClientId");
         profile.setClientSecret("ClientSecret");
         profile.setScope("ReadOnly");
+        profile.setTokenParameterName("TokenName");
         return profile;
     }
     public static OAuth2Profile getOAuthProfileForROPC() throws SoapUIException {

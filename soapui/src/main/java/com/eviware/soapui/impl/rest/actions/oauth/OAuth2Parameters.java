@@ -36,6 +36,7 @@ public class OAuth2Parameters {
     final String clientId;
     final String clientSecret;
     final String scope;
+    final String tokenParameterName;
     final String refreshToken;
     final String resourceOwnerName;
     final String resourceOwnerPassword;
@@ -53,6 +54,7 @@ public class OAuth2Parameters {
         this.clientId = expandProperty(profile, profile.getClientID());
         this.clientSecret = expandProperty(profile, profile.getClientSecret());
         this.scope = expandProperty(profile, profile.getScope());
+        this.tokenParameterName = expandProperty(profile, profile.getTokenParameterName());
         this.refreshToken = expandProperty(profile, profile.getRefreshToken());
         this.resourceOwnerName = expandProperty(profile, profile.getResourceOwnerName());
         this.resourceOwnerPassword = expandProperty(profile, profile.getResourceOwnerPassword());

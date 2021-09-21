@@ -45,7 +45,6 @@ public class OAuth2TokenExtractor {
     public static final String CODE = "code";
     public static final String TITLE = "<TITLE>";
     public static final String TOKEN = "token";
-    public static final String ACCESS_TOKEN = "access_token";
 
     protected List<BrowserListener> browserListeners = new ArrayList<BrowserListener>();
 
@@ -156,9 +155,9 @@ public class OAuth2TokenExtractor {
         browserFacade.addBrowserListener(new BrowserListenerAdapter() {
             @Override
             public void locationChanged(String newLocation) {
-                String accessToken = extractAuthorizationCodeFromForm(extractFormData(newLocation), ACCESS_TOKEN);
-                if (!StringUtils.isNullOrEmpty(accessToken)) {
-                    parameters.setAccessTokenInProfile(accessToken);
+                String token = extractAuthorizationCodeFromForm(extractFormData(newLocation), parameters.tokenParameterName);
+                if (!StringUtils.isNullOrEmpty(token)) {
+                    parameters.setAccessTokenInProfile(token);
                     parameters.setRefreshTokenInProfile(null);
                     parameters.setAccessTokenExpirationTimeInProfile(0);
                     parameters.setAccessTokenIssuedTimeInProfile(TimeUtils.getCurrentTimeInSeconds());

@@ -49,9 +49,15 @@ To get the source code, run `git clone https://github.com/SmartBear/soapui.git` 
 * To build a SoapUI project, run `mvn clean install` in the root folder.
 * To build an individual submodule, run `mvn clean install` in the root folder of the submodule you want to build.
 
+### Package
+
+To create packages for the different operating systems run `mvn -Passembly package`.
+
 ### Run
 
 To run SoapUI after it has been built, execute `mvn exec:java` in the root folder of the *soapui* submodule.
+To run SoapUI testrunner, execute `mvn exec:java@id -Dexec.args="project.xml` or add a profile with the mainClass="com.eviware.soapui.tools.SoapUITestCaseRunner" (https://stackoverflow.com/questions/8252107/is-it-possible-to-execute-two-different-maven-exec-maven-plugin-in-a-single-pom).
+Alternative you can change the mainClass in pom.xml and execute `mvn exec:java`
 
 ### Get the latest changes
 
@@ -116,6 +122,7 @@ SoapUI Open Source offers basic functionality for API testing. For additional fe
 
 ## Additional resources
 
+* [SoapUI Cookbook] (https://books.google.de/books?id=QUXfBgAAQBAJ&pg=PA277&lpg=PA277&dq=mvn+start+soapui-installer&source=bl&ots=pc2J0QNmyj&sig=ACfU3U2ynTc9Mqyftdiy0cfzLkBZK3Wypw&hl=de&sa=X&ved=2ahUKEwisndy8qujpAhUIy6QKHSTCBnQQ6AEwAnoECAoQAQ#v=onepage&q=dist&f=false) - SoapUI Cookbook
 * [SoapUI community](https://community.smartbear.com/t5/SoapUI-Open-Source/bd-p/SoapUI_OS) - SmartBear's SoapUI Open Source community for discussing and participating in all things SoapUI.
 * [SoapUI Groovy examples](https://github.com/SmartBear/soapui-groovy-examples) - This is a collection of SoapUI projects and Groovy scripts used to demonstrate the Groovy scripting capabilities in SoapUI.
 * [Extending SoapUI](http://www.soapui.org/Developers-Corner/extending-soapui.html)

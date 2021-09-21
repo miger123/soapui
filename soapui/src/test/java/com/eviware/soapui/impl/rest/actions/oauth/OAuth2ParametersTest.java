@@ -38,6 +38,7 @@ public class OAuth2ParametersTest {
     private static String CLIENT_ID_PROPERTY_NAME = "myClientId";
     private static String CLIENT_SECRET_PROPERTY_NAME = "myClientSecret";
     private static String SCOPE_PROPERTY_NAME = "myScope";
+    private static String SCOPE_TOKEN_PARAMETER_NAME = "myTokenProperty";
     private static String REFRESH_TOKEN_PROPERTY_NAME = "myRefreshToken";
 
     private OAuth2Profile profile;
@@ -57,6 +58,7 @@ public class OAuth2ParametersTest {
         project.addProperty(CLIENT_ID_PROPERTY_NAME).setValue(profile.getClientID());
         project.addProperty(CLIENT_SECRET_PROPERTY_NAME).setValue(profile.getClientSecret());
         project.addProperty(SCOPE_PROPERTY_NAME).setValue(profile.getScope());
+        project.addProperty(SCOPE_TOKEN_PARAMETER_NAME).setValue(profile.getTokenParameterName());
         project.addProperty(REFRESH_TOKEN_PROPERTY_NAME).setValue(profile.getRefreshToken());
 
         profile.setAuthorizationURI("${#Project#" + AUTHORIZATION_URI_PROPERTY_NAME + "}");
@@ -65,6 +67,7 @@ public class OAuth2ParametersTest {
         profile.setClientID("${#Project#" + CLIENT_ID_PROPERTY_NAME + "}");
         profile.setClientSecret("${#Project#" + CLIENT_SECRET_PROPERTY_NAME + "}");
         profile.setScope("${#Project#" + SCOPE_PROPERTY_NAME + "}");
+        profile.setTokenParameterName("${#Project#" + SCOPE_TOKEN_PARAMETER_NAME + "}");
         profile.setRefreshToken("${#Project#" + REFRESH_TOKEN_PROPERTY_NAME + "}");
 
         OAuth2Parameters parameters = new OAuth2Parameters(profile);
@@ -75,6 +78,7 @@ public class OAuth2ParametersTest {
         assertThat(parameters.clientId, is(project.getPropertyValue(CLIENT_ID_PROPERTY_NAME)));
         assertThat(parameters.clientSecret, is(project.getPropertyValue(CLIENT_SECRET_PROPERTY_NAME)));
         assertThat(parameters.scope, is(project.getPropertyValue(SCOPE_PROPERTY_NAME)));
+        assertThat(parameters.tokenParameterName, is(project.getPropertyValue(SCOPE_TOKEN_PARAMETER_NAME)));
         assertThat(parameters.refreshToken, is(project.getPropertyValue(REFRESH_TOKEN_PROPERTY_NAME)));
     }
 

@@ -56,6 +56,7 @@ public class OAuth2GetAccessTokenForm implements OAuth2AccessTokenStatusChangeLi
     public static final String ACCESS_TOKEN_URI_TITLE = "Access Token URI";
     public static final String REDIRECT_URI_TITLE = "Redirect URI";
     public static final String SCOPE_TITLE = "Scope";
+    public static final String TOKEN_PARAMETER_NAME_TITLE = "Token Parameter Name";
     public static final String OAUTH_2_FLOW_COMBO_BOX_NAME = "OAuth2Flow";
     public static final String ACCESS_TOKEN_FORM_DIALOG_NAME = "getAccessTokenFormDialog";
 
@@ -154,6 +155,10 @@ public class OAuth2GetAccessTokenForm implements OAuth2AccessTokenStatusChangeLi
         accessTokenForm.addSpace(GROUP_SPACING);
 
         accessTokenForm.appendTextField(OAuth2Profile.SCOPE_PROPERTY, SCOPE_TITLE, "");
+
+        accessTokenForm.addSpace(NORMAL_SPACING);
+        
+        accessTokenForm.appendTextField(OAuth2Profile.TOKEN_PARAMETER_PROPERTY, TOKEN_PARAMETER_NAME_TITLE, "");
 
         accessTokenForm.addSpace(NORMAL_SPACING);
 
