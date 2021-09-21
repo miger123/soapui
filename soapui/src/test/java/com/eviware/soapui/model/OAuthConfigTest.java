@@ -49,6 +49,7 @@ public class OAuthConfigTest {
         oAuth2Profile.setClientSecret("XYSDKMLL");
         oAuth2Profile.setAccessToken("ACDFECDSFKJFK#SDFSD8df");
         oAuth2Profile.setScope("google.com/calendar/read");
+        oAuth2Profile.setTokenParameterName("access_token");
 
         project.saveAs(projectFileName);
     }

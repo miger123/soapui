@@ -52,6 +52,7 @@ public class OAuth2Profile implements PropertyExpansionContainer {
     public static final String ACCESS_TOKEN_PROPERTY = "accessToken";
     public static final String REFRESH_TOKEN_PROPERTY = "refreshToken";
     public static final String SCOPE_PROPERTY = "scope";
+    public static final String TOKEN_PARAMETER_PROPERTY = "tokenParameterName";
     public static final String ACCESS_TOKEN_STATUS_PROPERTY = "accessTokenStatus";
     public static final String ACCESS_TOKEN_POSITION_PROPERTY = "accessTokenPosition";
     public static final String ACCESS_TOKEN_EXPIRATION_TIME = "accessTokenExpirationTime";
@@ -338,6 +339,18 @@ public class OAuth2Profile implements PropertyExpansionContainer {
         }
     }
 
+    public String getTokenParameterName() {
+        return configuration.getTokenParameterName();
+    }
+
+    public void setTokenParameterName(String tokenParameterName) {
+        String oldValue = configuration.getTokenParameterName();
+        if (!StringUtils.equals(oldValue, tokenParameterName)) {
+            configuration.setTokenParameterName(tokenParameterName);
+            pcs.firePropertyChange(TOKEN_PARAMETER_PROPERTY, oldValue, tokenParameterName);
+        }
+    }
+
     public OAuth2ProfileConfig getConfiguration() {
         return configuration;
     }
@@ -498,6 +511,7 @@ public class OAuth2Profile implements PropertyExpansionContainer {
         result.extractAndAddAll(REDIRECT_URI_PROPERTY);
         result.extractAndAddAll(ACCESS_TOKEN_PROPERTY);
         result.extractAndAddAll(SCOPE_PROPERTY);
+        result.extractAndAddAll(TOKEN_PARAMETER_PROPERTY);
         result.extractAndAddAll(MANUAL_ACCESS_TOKEN_EXPIRATION_TIME);
         result.extractAndAddAll(RESOURCE_OWNER_LOGIN_PROPERTY);
         result.extractAndAddAll(RESOURCE_OWNER_PASSWORD_PROPERTY);

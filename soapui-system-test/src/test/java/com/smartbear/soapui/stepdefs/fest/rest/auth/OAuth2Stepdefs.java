@@ -52,6 +52,7 @@ public class OAuth2Stepdefs {
     private static final String ACCESS_TOKEN_URI = "access-token-uri";
     private static final String REDIRECT_URI = "redirect-uri";
     private static final String SCOPE = "scope";
+    private static final String TOKEN_PARAMETER_NAME = "token-parameter-name";
     private static final String ACCESS_TOKEN = "access-token";
 
     private static final String ADVANCED_OPTIONS_DIALOG_NAME = "OAuth 2 Advanced options";
@@ -75,7 +76,8 @@ public class OAuth2Stepdefs {
         accessTokenFormDialog.textBox(OAuth2Profile.AUTHORIZATION_URI_PROPERTY).setText(AUTHORIZATION_URI);
         accessTokenFormDialog.textBox(OAuth2Profile.ACCESS_TOKEN_URI_PROPERTY).setText(ACCESS_TOKEN_URI);
         accessTokenFormDialog.textBox(OAuth2Profile.REDIRECT_URI_PROPERTY).setText(REDIRECT_URI);
-        accessTokenFormDialog.textBox(OAuth2Profile.SCOPE_PROPERTY).setText(SCOPE);
+        accessTokenFormDialog.textBox(OAuth2Profile.SCOPE_PROPERTY).setText(TOKEN_PARAMETER_NAME);
+        accessTokenFormDialog.textBox(OAuth2Profile.TOKEN_PARAMETER_PROPERTY).setText(SCOPE);
     }
 
     @When("^switches to another Authorization type and then back again to (.+)$")
@@ -141,6 +143,7 @@ public class OAuth2Stepdefs {
         assertThat(accessTokenFormDialog.textBox(OAuth2Profile.ACCESS_TOKEN_URI_PROPERTY).text(), is(ACCESS_TOKEN_URI));
         assertThat(accessTokenFormDialog.textBox(OAuth2Profile.REDIRECT_URI_PROPERTY).text(), is(REDIRECT_URI));
         assertThat(accessTokenFormDialog.textBox(OAuth2Profile.SCOPE_PROPERTY).text(), is(SCOPE));
+        assertThat(accessTokenFormDialog.textBox(OAuth2Profile.TOKEN_PARAMETER_PROPERTY).text(), is(TOKEN_PARAMETER_NAME));
     }
 
     @Then("^access token position is (.+)$")
