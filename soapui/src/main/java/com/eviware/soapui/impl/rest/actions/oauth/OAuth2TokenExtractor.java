@@ -21,6 +21,8 @@ import com.eviware.soapui.impl.rest.OAuth2Profile;
 import com.eviware.soapui.impl.wsdl.support.http.HttpClientSupport;
 import com.eviware.soapui.support.StringUtils;
 import com.eviware.soapui.support.TimeUtils;
+import com.sun.tools.javac.util.Convert;
+
 import org.apache.oltu.oauth2.client.OAuthClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.client.response.OAuthJSONAccessTokenResponse;
@@ -159,7 +161,12 @@ public class OAuth2TokenExtractor {
                 if (!StringUtils.isNullOrEmpty(token)) {
                     parameters.setAccessTokenInProfile(token);
                     parameters.setRefreshTokenInProfile(null);
-                    parameters.setAccessTokenExpirationTimeInProfile(0);
+                    try {
+                    	String expiresIn = extractAuthorizationCodeFromForm(extractFormData(newLocation), "expires_in");
+                    	parameters.setAccessTokenExpirationTimeInProfile(Integer.parseInt(expiresIn));
+                    } catch (NumberFormatException e) {
+                    	parameters.setAccessTokenExpirationTimeInProfile(0);
+                    }
                     parameters.setAccessTokenIssuedTimeInProfile(TimeUtils.getCurrentTimeInSeconds());
                     browserFacade.close();
                 }

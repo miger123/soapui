@@ -20,6 +20,8 @@ import com.eviware.soapui.SoapUI;
 import com.eviware.soapui.impl.rest.actions.oauth.BrowserListener;
 import com.eviware.soapui.support.Tools;
 import com.eviware.soapui.support.xml.XmlUtils;
+import com.sun.javafx.webkit.WebConsoleListener;
+
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -160,6 +162,9 @@ class EnabledWebViewBasedBrowserComponent implements WebViewBasedBrowserComponen
         Platform.runLater(new Runnable() {
             public void run() {
                 try {
+                	WebConsoleListener.setDefaultListener((webView, message, lineNumber, sourceId) -> {
+                		SoapUI.log.info("Browser console> " + message + " [at " + lineNumber + "]");
+                	});
                     webView.getEngine().executeScript(script);
                     for (BrowserListener listener : listeners) {
                         listener.javaScriptExecuted(script, null, null);
