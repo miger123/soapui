@@ -39,7 +39,7 @@ import static com.eviware.soapui.config.CredentialsConfig.AuthType.O_AUTH_1_0;
 import static com.eviware.soapui.config.CredentialsConfig.AuthType.O_AUTH_2_0;
 
 public class OAuth2RequestFilter extends AbstractRequestFilter {
-    private static final int ACCESS_TOKEN_RETRIEVAL_TIMEOUT = 5000;
+    private static final int ACCESS_TOKEN_RETRIEVAL_TIMEOUT = 15000;
     // intentionally left non-final to facilitate testing, but should not be modified in production!
     private static Logger log = Logger.getLogger(OAuth2RequestFilter.class);
 
